@@ -1,0 +1,6 @@
+[submodule "Arcporter/Lib/FauFau"]
+	path = Arcporter/Lib/FauFau
+	url = https://github.com/themeldingwars/FauFau.git
+[submodule "Arcporter/Lib/DarkUI"]
+	path = Arcporter/Lib/DarkUI
+	url = https://github.com/RobinPerris/DarkUI.git
