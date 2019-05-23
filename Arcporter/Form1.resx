@@ -120,4 +120,20 @@
   <metadata name="openFileDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <data name="dtbInfo.Text" xml:space="preserve">
+    <value>
+Arcporter is a tool that lets you load any zone in replay mode.
+
+
+This is achieved by patching the game client to start without the Redhanded anti-cheat system enabled and removing the range limit on the spectator camera.
+
+The patched client is then given a bare-bones replay file that contains just enough data to load the desired zone.
+
+
+This tool was created for educational purposes only and should not be used by anyone.
+
+
+The Melding Wars 2019
+freakbyte, Arkii</value>
+  </data>
 </root>

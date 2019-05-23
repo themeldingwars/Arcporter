@@ -1,8 +1,15 @@
-﻿using FauFau.Formats;
+﻿using Bitter;
+using FauFau.Formats;
+using FauFau.Hax;
+using FauFau.Hax.Patches;
+using FauFau.Util;
+using SharpCompress.Compressors;
+using SharpCompress.Compressors.Deflate;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -24,9 +31,22 @@ namespace Arcporter
 
         string mapsPath;
         string exePath;
+        string appDataPath;
+        string dummyPath;
+        string patchedExePath;
+        string workingDirectory;
+
+        Cursor arrowCursor = Util.LoadCustomCursor(Properties.Resources.sys_arrow);
+        Cursor ibeamCursor = Util.LoadCustomCursor(Properties.Resources.sys_ibeam);
 
         public Form1()
         {
+            appDataPath = Common.AppDataPath("Arcporter");
+            dummyPath = Path.Combine(appDataPath, "dummy.nsr");
+            patchedExePath = Path.Combine(appDataPath, "PatchedClient.exe");
+
+            Directory.CreateDirectory(appDataPath);
+
             InitializeComponent();
 
             // reuse exe icon for titlebar to avoid duplicate data
@@ -37,13 +57,19 @@ namespace Arcporter
                 Icon = Icon.FromHandle(hIcon);
             }
 
+            Cursor = arrowCursor;
+            dtbPath.Cursor = ibeamCursor;
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            panel1.Visible = false;
+            dlvZones.Visible = true;
 
             TryLoad(Properties.Settings.Default.Path, true);
         }
+
 
         private void TryLoad(string path, bool ignoreError = false)
         {
@@ -54,22 +80,42 @@ namespace Arcporter
                 if(fi.Directory.Parent != null)
                 {
                     mapsPath = Path.Combine(fi.Directory.Parent.FullName, "maps");
-                    if(Directory.Exists(mapsPath))
+
+                    if (Directory.Exists(mapsPath))
                     {
+                        dlvZones.Items.Clear();
                         exePath = path;
-                        darkTextBox1.Text = exePath;
+                        workingDirectory = fi.Directory.FullName;
+                        dtbPath.Text = exePath;
 
                         string[] zoneFiles = Directory.GetFiles(mapsPath, "*.zone", SearchOption.TopDirectoryOnly);
+                        SortedDictionary<int, Zone> zones = new SortedDictionary<int, Zone>();
+
                         foreach (string zf in zoneFiles)
                         {
-
-                            Zone zone = new FauFau.Formats.Zone();
+                            Zone zone = new Zone();
                             zone.Read(zf);
-                            darkListView1.Items.Add(new DarkUI.Controls.DarkListItem(zone.Name));
+                            zones.Add(int.Parse(new FileInfo(zf).Name.Split('.')[0]), zone);
+                        }
+                        
+                        foreach(KeyValuePair<int, Zone> zone in zones)
+                        {
+                            string zId = zone.Key.ToString().PadRight(4);
+                            dlvZones.Items.Add(new DarkUI.Controls.DarkListItem(zId + " | " + zone.Value.Name));
                         }
 
                         Properties.Settings.Default.Path = path;
                         Properties.Settings.Default.Save();
+
+
+                        Patcher patcher = new Patcher(exePath);
+                        patcher.Path = appDataPath;
+
+                        
+                        patcher.ApplyPatch(new UnlimitedFreeCamRadius());
+                        patcher.ApplyPatch(new RedHandedBypass());
+
+                        patcher.Save(patchedExePath);
 
                         return;
                     }
@@ -84,7 +130,7 @@ namespace Arcporter
 
             if(!ignoreError)
             {
-                darkTextBox1.Text = "Invalid path, try again..";
+                dtbPath.Text = "Invalid path, try again..";
             }
             
         }
@@ -96,10 +142,25 @@ namespace Arcporter
 
         private void DarkListView1_DoubleClick(object sender, EventArgs e)
         {
-            if(darkListView1.SelectedIndices.Count > 0)
+            if(dlvZones.SelectedIndices.Count > 0)
             {
-                string selected = darkListView1.Items[darkListView1.SelectedIndices[0]].Text;
-                Console.WriteLine(selected);
+                string selected = dlvZones.Items[dlvZones.SelectedIndices[0]].Text;
+                int zoneId = int.Parse(selected.Split(' ')[0]);
+                //Console.WriteLine(zoneId);
+
+                if(Program.FirefallProcess != null && !Program.FirefallProcess.HasExited)
+                {
+                    Program.FirefallProcess.Kill();
+                    Program.FirefallProcess.WaitForExit(1000);
+                }
+
+                Nsr.GenerateDummyFile(zoneId).Write(dummyPath);
+                ProcessStartInfo info = new ProcessStartInfo();
+
+                info.FileName = patchedExePath;
+                info.WorkingDirectory = workingDirectory;
+                info.Arguments = "--open=\"" + dummyPath + "\"";
+                Program.FirefallProcess = Process.Start(info);
 
             }
         }
@@ -113,12 +174,19 @@ namespace Arcporter
         {
             if (e.KeyCode == Keys.Enter)
             {
-                if (darkListView1.SelectedIndices.Count > 0)
+                if (dlvZones.SelectedIndices.Count > 0)
                 {
-                    string selected = darkListView1.Items[darkListView1.SelectedIndices[0]].Text;
-                    Console.WriteLine(selected);
+                    string selected = dlvZones.Items[dlvZones.SelectedIndices[0]].Text;
+                    //Console.WriteLine(selected);
                 }
             }
+        }
+
+        private void DarkButton2_Click(object sender, EventArgs e)
+        {
+            panel1.Visible = dlvZones.Visible;
+            dlvZones.Visible = !dlvZones.Visible;
+
         }
     }
 }

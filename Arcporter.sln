@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bitter", "Arcporter\Lib\Fau
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DarkUI", "Arcporter\Lib\DarkUI\DarkUI\DarkUI.csproj", "{F19472F5-8C44-4C51-A8A0-B9DE5F555255}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PatternFinder", "Arcporter\Lib\FauFau\FauFau\Lib\PatternFinder\PatternFinder\PatternFinder.csproj", "{5FFB2393-5455-49C1-8D45-3EA5C0F22386}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +71,18 @@ Global
 		{F19472F5-8C44-4C51-A8A0-B9DE5F555255}.Release|x64.Build.0 = Release|Any CPU
 		{F19472F5-8C44-4C51-A8A0-B9DE5F555255}.Release|x86.ActiveCfg = Release|Any CPU
 		{F19472F5-8C44-4C51-A8A0-B9DE5F555255}.Release|x86.Build.0 = Release|Any CPU
+		{5FFB2393-5455-49C1-8D45-3EA5C0F22386}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FFB2393-5455-49C1-8D45-3EA5C0F22386}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FFB2393-5455-49C1-8D45-3EA5C0F22386}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{5FFB2393-5455-49C1-8D45-3EA5C0F22386}.Debug|x64.Build.0 = Debug|Any CPU
+		{5FFB2393-5455-49C1-8D45-3EA5C0F22386}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5FFB2393-5455-49C1-8D45-3EA5C0F22386}.Debug|x86.Build.0 = Debug|Any CPU
+		{5FFB2393-5455-49C1-8D45-3EA5C0F22386}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FFB2393-5455-49C1-8D45-3EA5C0F22386}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5FFB2393-5455-49C1-8D45-3EA5C0F22386}.Release|x64.ActiveCfg = Release|Any CPU
+		{5FFB2393-5455-49C1-8D45-3EA5C0F22386}.Release|x64.Build.0 = Release|Any CPU
+		{5FFB2393-5455-49C1-8D45-3EA5C0F22386}.Release|x86.ActiveCfg = Release|Any CPU
+		{5FFB2393-5455-49C1-8D45-3EA5C0F22386}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

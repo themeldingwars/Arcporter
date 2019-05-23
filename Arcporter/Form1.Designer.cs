@@ -28,50 +28,58 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.darkButton1 = new DarkUI.Controls.DarkButton();
-            this.darkTextBox1 = new DarkUI.Controls.DarkTextBox();
-            this.darkListView1 = new DarkUI.Controls.DarkListView();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            this.btnBrowse = new DarkUI.Controls.DarkButton();
+            this.dtbPath = new DarkUI.Controls.DarkTextBox();
+            this.dlvZones = new DarkUI.Controls.DarkListView();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.btnInfo = new DarkUI.Controls.DarkButton();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.dtbTitle = new DarkUI.Controls.DarkTextBox();
+            this.dtbInfo = new DarkUI.Controls.DarkTextBox();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // darkButton1
+            // btnBrowse
             // 
-            this.darkButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.darkButton1.Location = new System.Drawing.Point(260, 461);
-            this.darkButton1.Name = "darkButton1";
-            this.darkButton1.Padding = new System.Windows.Forms.Padding(5);
-            this.darkButton1.Size = new System.Drawing.Size(30, 23);
-            this.darkButton1.TabIndex = 2;
-            this.darkButton1.Text = "...";
-            this.darkButton1.Click += new System.EventHandler(this.DarkButton1_Click);
+            this.btnBrowse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnBrowse.Location = new System.Drawing.Point(232, 342);
+            this.btnBrowse.Name = "btnBrowse";
+            this.btnBrowse.Padding = new System.Windows.Forms.Padding(5);
+            this.btnBrowse.Size = new System.Drawing.Size(32, 23);
+            this.btnBrowse.TabIndex = 2;
+            this.btnBrowse.Text = "...";
+            this.btnBrowse.Click += new System.EventHandler(this.DarkButton1_Click);
             // 
-            // darkTextBox1
+            // dtbPath
             // 
-            this.darkTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.dtbPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.darkTextBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
-            this.darkTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.darkTextBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.darkTextBox1.Location = new System.Drawing.Point(-1, 461);
-            this.darkTextBox1.Name = "darkTextBox1";
-            this.darkTextBox1.ReadOnly = true;
-            this.darkTextBox1.Size = new System.Drawing.Size(259, 20);
-            this.darkTextBox1.TabIndex = 1;
-            this.darkTextBox1.Text = "Please locate FirefallClient.exe";
+            this.dtbPath.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
+            this.dtbPath.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.dtbPath.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.dtbPath.Location = new System.Drawing.Point(-1, 342);
+            this.dtbPath.Name = "dtbPath";
+            this.dtbPath.ReadOnly = true;
+            this.dtbPath.Size = new System.Drawing.Size(232, 20);
+            this.dtbPath.TabIndex = 1;
+            this.dtbPath.Text = "Please locate FirefallClient.exe";
             // 
-            // darkListView1
+            // dlvZones
             // 
-            this.darkListView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.dlvZones.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.darkListView1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(58)))), ((int)(((byte)(60)))));
-            this.darkListView1.Location = new System.Drawing.Point(0, 0);
-            this.darkListView1.Name = "darkListView1";
-            this.darkListView1.Size = new System.Drawing.Size(289, 459);
-            this.darkListView1.TabIndex = 0;
-            this.darkListView1.Text = "darkListView1";
-            this.darkListView1.DoubleClick += new System.EventHandler(this.DarkListView1_DoubleClick);
-            this.darkListView1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.DarkListView1_KeyUp);
+            this.dlvZones.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(58)))), ((int)(((byte)(60)))));
+            this.dlvZones.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dlvZones.Location = new System.Drawing.Point(0, 0);
+            this.dlvZones.Name = "dlvZones";
+            this.dlvZones.Size = new System.Drawing.Size(284, 340);
+            this.dlvZones.TabIndex = 0;
+            this.dlvZones.Text = "darkListView1";
+            this.dlvZones.Visible = false;
+            this.dlvZones.DoubleClick += new System.EventHandler(this.DarkListView1_DoubleClick);
+            this.dlvZones.KeyUp += new System.Windows.Forms.KeyEventHandler(this.DarkListView1_KeyUp);
             // 
             // openFileDialog1
             // 
@@ -79,18 +87,81 @@
             this.openFileDialog1.Filter = "Game Client | FirefallClient.exe";
             this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.OpenFileDialog1_FileOk);
             // 
+            // btnInfo
+            // 
+            this.btnInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnInfo.Location = new System.Drawing.Point(265, 342);
+            this.btnInfo.Name = "btnInfo";
+            this.btnInfo.Padding = new System.Windows.Forms.Padding(5);
+            this.btnInfo.Size = new System.Drawing.Size(20, 23);
+            this.btnInfo.TabIndex = 3;
+            this.btnInfo.Text = "?";
+            this.btnInfo.Click += new System.EventHandler(this.DarkButton2_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
+            this.panel1.Controls.Add(this.dtbTitle);
+            this.panel1.Controls.Add(this.dtbInfo);
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Padding = new System.Windows.Forms.Padding(10);
+            this.panel1.Size = new System.Drawing.Size(286, 340);
+            this.panel1.TabIndex = 4;
+            // 
+            // dtbTitle
+            // 
+            this.dtbTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
+            this.dtbTitle.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dtbTitle.Cursor = System.Windows.Forms.Cursors.Default;
+            this.dtbTitle.Dock = System.Windows.Forms.DockStyle.Top;
+            this.dtbTitle.Font = new System.Drawing.Font("Consolas", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtbTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.dtbTitle.Location = new System.Drawing.Point(10, 10);
+            this.dtbTitle.Multiline = true;
+            this.dtbTitle.Name = "dtbTitle";
+            this.dtbTitle.ReadOnly = true;
+            this.dtbTitle.Size = new System.Drawing.Size(266, 24);
+            this.dtbTitle.TabIndex = 2;
+            this.dtbTitle.Text = "ARCPORTER";
+            this.dtbTitle.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // dtbInfo
+            // 
+            this.dtbInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
+            this.dtbInfo.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dtbInfo.Cursor = System.Windows.Forms.Cursors.Default;
+            this.dtbInfo.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.dtbInfo.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtbInfo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
+            this.dtbInfo.Location = new System.Drawing.Point(10, 31);
+            this.dtbInfo.Multiline = true;
+            this.dtbInfo.Name = "dtbInfo";
+            this.dtbInfo.Size = new System.Drawing.Size(266, 299);
+            this.dtbInfo.TabIndex = 1;
+            this.dtbInfo.Text = resources.GetString("dtbInfo.Text");
+            this.dtbInfo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(289, 480);
-            this.Controls.Add(this.darkButton1);
-            this.Controls.Add(this.darkTextBox1);
-            this.Controls.Add(this.darkListView1);
+            this.ClientSize = new System.Drawing.Size(284, 361);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.btnInfo);
+            this.Controls.Add(this.btnBrowse);
+            this.Controls.Add(this.dtbPath);
+            this.Controls.Add(this.dlvZones);
+            this.MinimumSize = new System.Drawing.Size(300, 400);
             this.Name = "Form1";
             this.Text = "Arcporter";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -98,10 +169,14 @@
 
         #endregion
 
-        private DarkUI.Controls.DarkListView darkListView1;
-        private DarkUI.Controls.DarkTextBox darkTextBox1;
-        private DarkUI.Controls.DarkButton darkButton1;
+        private DarkUI.Controls.DarkListView dlvZones;
+        private DarkUI.Controls.DarkTextBox dtbPath;
+        private DarkUI.Controls.DarkButton btnBrowse;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private DarkUI.Controls.DarkButton btnInfo;
+        private System.Windows.Forms.Panel panel1;
+        private DarkUI.Controls.DarkTextBox dtbInfo;
+        private DarkUI.Controls.DarkTextBox dtbTitle;
     }
 }
 
