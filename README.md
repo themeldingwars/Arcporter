@@ -14,7 +14,7 @@ git clone --recurse-submodules https://github.com/themeldingwars/Arcporter.git
 
 ```
 git clone https://github.com/themeldingwars/Arcporter.git
-cd FauFau
+cd Arcporter
 git submodule update --init --recursive
 ```
 
