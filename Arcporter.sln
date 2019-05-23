@@ -4,14 +4,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.28729.10
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arcporter", "Arcporter\Arcporter.csproj", "{60F9204C-6A36-479F-8541-BD817F85166D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{1766A951-C04C-4BF2-9F64-94107BE0316F} = {1766A951-C04C-4BF2-9F64-94107BE0316F}
+		{257E66B9-6947-49A8-899A-1E3ED1EC6200} = {257E66B9-6947-49A8-899A-1E3ED1EC6200}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FauFau", "Arcporter\Lib\FauFau\FauFau\FauFau.csproj", "{1766A951-C04C-4BF2-9F64-94107BE0316F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bitter", "Arcporter\Lib\FauFau\FauFau\Lib\Bitter\Bitter\Bitter.csproj", "{257E66B9-6947-49A8-899A-1E3ED1EC6200}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DarkUI", "Arcporter\Lib\DarkUI\DarkUI\DarkUI.csproj", "{F19472F5-8C44-4C51-A8A0-B9DE5F555255}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PatternFinder", "Arcporter\Lib\FauFau\FauFau\Lib\PatternFinder\PatternFinder\PatternFinder.csproj", "{5FFB2393-5455-49C1-8D45-3EA5C0F22386}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -71,18 +73,6 @@ Global
 		{F19472F5-8C44-4C51-A8A0-B9DE5F555255}.Release|x64.Build.0 = Release|Any CPU
 		{F19472F5-8C44-4C51-A8A0-B9DE5F555255}.Release|x86.ActiveCfg = Release|Any CPU
 		{F19472F5-8C44-4C51-A8A0-B9DE5F555255}.Release|x86.Build.0 = Release|Any CPU
-		{5FFB2393-5455-49C1-8D45-3EA5C0F22386}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5FFB2393-5455-49C1-8D45-3EA5C0F22386}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5FFB2393-5455-49C1-8D45-3EA5C0F22386}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{5FFB2393-5455-49C1-8D45-3EA5C0F22386}.Debug|x64.Build.0 = Debug|Any CPU
-		{5FFB2393-5455-49C1-8D45-3EA5C0F22386}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{5FFB2393-5455-49C1-8D45-3EA5C0F22386}.Debug|x86.Build.0 = Debug|Any CPU
-		{5FFB2393-5455-49C1-8D45-3EA5C0F22386}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5FFB2393-5455-49C1-8D45-3EA5C0F22386}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5FFB2393-5455-49C1-8D45-3EA5C0F22386}.Release|x64.ActiveCfg = Release|Any CPU
-		{5FFB2393-5455-49C1-8D45-3EA5C0F22386}.Release|x64.Build.0 = Release|Any CPU
-		{5FFB2393-5455-49C1-8D45-3EA5C0F22386}.Release|x86.ActiveCfg = Release|Any CPU
-		{5FFB2393-5455-49C1-8D45-3EA5C0F22386}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
