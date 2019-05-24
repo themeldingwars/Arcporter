@@ -1,6 +1,6 @@
 ﻿namespace Arcporter
 {
-    partial class Form1
+    sealed partial class ArcporterForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ArcporterForm));
             this.btnBrowse = new DarkUI.Controls.DarkButton();
             this.dtbPath = new DarkUI.Controls.DarkTextBox();
             this.dlvZones = new DarkUI.Controls.DarkListView();
@@ -145,7 +145,7 @@
             this.dtbInfo.Text = resources.GetString("dtbInfo.Text");
             this.dtbInfo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // Form1
+            // ArcporterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -157,9 +157,9 @@
             this.Controls.Add(this.dtbPath);
             this.Controls.Add(this.dlvZones);
             this.MinimumSize = new System.Drawing.Size(300, 400);
-            this.Name = "Form1";
+            this.Name = "ArcporterForm";
             this.Text = "Arcporter";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Load += new System.EventHandler(this.ArcporterForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);

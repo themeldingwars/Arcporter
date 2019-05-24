@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Arcporter
@@ -18,17 +14,25 @@ namespace Arcporter
 
         public static Cursor LoadCustomCursor(byte[] cursorData)
         {
-            string tmpFile = Path.GetTempPath() + Guid.NewGuid().ToString() + ".cur";
-            File.WriteAllBytes(tmpFile, cursorData);
+            string cursorFile = Path.GetTempPath() + Guid.NewGuid().ToString() + ".cur";
+            File.WriteAllBytes(cursorFile, cursorData);
 
-            IntPtr hCurs = LoadCursorFromFile(tmpFile);
-            if (hCurs == IntPtr.Zero) throw new Win32Exception();
-            Cursor curs = new Cursor(hCurs);
-            FieldInfo fi = typeof(Cursor).GetField("ownHandle", BindingFlags.NonPublic | BindingFlags.Instance);
-            fi.SetValue(curs, true);
+            IntPtr cursorHandle = LoadCursorFromFile(cursorFile);
+            if (cursorHandle == IntPtr.Zero)
+            {
+                throw new Win32Exception("Unable to load cursor from file");
+            }
+            Cursor cursor = new Cursor(cursorHandle);
 
-            File.Delete(tmpFile);
-            return curs;
+            FieldInfo fieldInfo = typeof(Cursor).GetField("ownHandle", BindingFlags.NonPublic | BindingFlags.Instance);
+            if (fieldInfo == null)
+            {
+                throw new Win32Exception("Unable to retrieve cursor field information");
+            }
+            fieldInfo.SetValue(cursor, true);
+
+            File.Delete(cursorFile);
+            return cursor;
         }
 
     }

@@ -21,35 +21,35 @@ using System.Windows.Forms;
 
 namespace Arcporter
 {
-    public partial class Form1 : Form
+    public sealed partial class ArcporterForm : Form
     {
-
         [DllImport("user32.dll")]
-        static extern IntPtr LoadIcon(IntPtr hInstance, IntPtr iconName);
+        private static extern IntPtr LoadIcon(IntPtr hInstance, IntPtr iconName);
         [DllImport("kernel32.dll")]
-        static extern IntPtr GetModuleHandle(string moduleName);
+        private static extern IntPtr GetModuleHandle(string moduleName);
 
-        string mapsPath;
-        string exePath;
-        string appDataPath;
-        string dummyPath;
-        string patchedExePath;
-        string workingDirectory;
+        private string _mapsPath;
+        private string _exePath;
+        private string _workingDirectory;
 
-        Cursor arrowCursor = Util.LoadCustomCursor(Properties.Resources.sys_arrow);
-        Cursor ibeamCursor = Util.LoadCustomCursor(Properties.Resources.sys_ibeam);
+        private readonly string _appDataPath;
+        private readonly string _dummyReplayPath;
+        private readonly string _patchedExePath;
 
-        public Form1()
+        private readonly Cursor _arrowCursor = Util.LoadCustomCursor(Properties.Resources.sys_arrow);
+        private readonly Cursor _ibeamCursor = Util.LoadCustomCursor(Properties.Resources.sys_ibeam);
+
+        public ArcporterForm()
         {
-            appDataPath = Common.AppDataPath("Arcporter");
-            dummyPath = Path.Combine(appDataPath, "dummy.nsr");
-            patchedExePath = Path.Combine(appDataPath, "PatchedClient.exe");
+            _appDataPath = Common.AppDataPath("Arcporter");
+            _dummyReplayPath = Path.Combine(_appDataPath, "dummy.nsr");
+            _patchedExePath = Path.Combine(_appDataPath, "PatchedClient.exe");
 
-            Directory.CreateDirectory(appDataPath);
+            Directory.CreateDirectory(_appDataPath);
 
             InitializeComponent();
 
-            // reuse exe icon for titlebar to avoid duplicate data
+            // Reuse exe icon for titlebar to avoid duplicate data
             IntPtr hInstance = GetModuleHandle(null);
             IntPtr hIcon = LoadIcon(hInstance, new IntPtr(32512));
             if (hIcon != IntPtr.Zero)
@@ -57,12 +57,12 @@ namespace Arcporter
                 Icon = Icon.FromHandle(hIcon);
             }
 
-            Cursor = arrowCursor;
-            dtbPath.Cursor = ibeamCursor;
+            Cursor = _arrowCursor;
+            dtbPath.Cursor = _ibeamCursor;
 
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void ArcporterForm_Load(object sender, EventArgs e)
         {
             panel1.Visible = false;
             dlvZones.Visible = true;
@@ -76,26 +76,26 @@ namespace Arcporter
             
             if(File.Exists(path))
             {
-                FileInfo fi = new FileInfo(path);
-                if(fi.Directory.Parent != null)
+                FileInfo fileInfo = new FileInfo(path);
+                if(fileInfo.Directory?.Parent != null)
                 {
-                    mapsPath = Path.Combine(fi.Directory.Parent.FullName, "maps");
+                    _mapsPath = Path.Combine(fileInfo.Directory.Parent.FullName, "maps");
 
-                    if (Directory.Exists(mapsPath))
+                    if (Directory.Exists(_mapsPath))
                     {
                         dlvZones.Items.Clear();
-                        exePath = path;
-                        workingDirectory = fi.Directory.FullName;
-                        dtbPath.Text = exePath;
+                        _exePath = path;
+                        _workingDirectory = fileInfo.Directory.FullName;
+                        dtbPath.Text = _exePath;
 
-                        string[] zoneFiles = Directory.GetFiles(mapsPath, "*.zone", SearchOption.TopDirectoryOnly);
+                        string[] zoneFiles = Directory.GetFiles(_mapsPath, "*.zone", SearchOption.TopDirectoryOnly);
                         SortedDictionary<int, Zone> zones = new SortedDictionary<int, Zone>();
 
-                        foreach (string zf in zoneFiles)
+                        foreach (string zoneFile in zoneFiles)
                         {
                             Zone zone = new Zone();
-                            zone.Read(zf);
-                            zones.Add(int.Parse(new FileInfo(zf).Name.Split('.')[0]), zone);
+                            zone.Read(zoneFile);
+                            zones.Add(int.Parse(new FileInfo(zoneFile).Name.Split('.')[0]), zone);
                         }
                         
                         foreach(KeyValuePair<int, Zone> zone in zones)
@@ -107,30 +107,25 @@ namespace Arcporter
                         Properties.Settings.Default.Path = path;
                         Properties.Settings.Default.Save();
 
+                        Patcher patcher = new Patcher(_exePath) {Path = _appDataPath};
 
-                        Patcher patcher = new Patcher(exePath);
-                        patcher.Path = appDataPath;
-
-                        
                         patcher.ApplyPatch(new UnlimitedFreeCamRadius());
                         patcher.ApplyPatch(new RedHandedBypass());
-
-                        patcher.Save(patchedExePath);
+                        patcher.Save(_patchedExePath);
 
                         return;
                     }
                 }
             }
 
-
-            mapsPath = null;
-            exePath = null;
+            _mapsPath = null;
+            _exePath = null;
             Properties.Settings.Default.Path = null;
             Properties.Settings.Default.Save();
 
             if(!ignoreError)
             {
-                dtbPath.Text = "Invalid path, try again..";
+                dtbPath.Text = "Invalid path, try again...";
             }
             
         }
@@ -142,27 +137,30 @@ namespace Arcporter
 
         private void DarkListView1_DoubleClick(object sender, EventArgs e)
         {
-            if(dlvZones.SelectedIndices.Count > 0)
+            if (dlvZones.SelectedIndices.Count <= 0)
             {
-                string selected = dlvZones.Items[dlvZones.SelectedIndices[0]].Text;
-                int zoneId = int.Parse(selected.Split(' ')[0]);
-                //Console.WriteLine(zoneId);
-
-                if(Program.FirefallProcess != null && !Program.FirefallProcess.HasExited)
-                {
-                    Program.FirefallProcess.Kill();
-                    Program.FirefallProcess.WaitForExit(1000);
-                }
-
-                Nsr.GenerateDummyFile(zoneId).Write(dummyPath);
-                ProcessStartInfo info = new ProcessStartInfo();
-
-                info.FileName = patchedExePath;
-                info.WorkingDirectory = workingDirectory;
-                info.Arguments = "--open=\"" + dummyPath + "\"";
-                Program.FirefallProcess = Process.Start(info);
-
+                return;
             }
+
+            string selected = dlvZones.Items[dlvZones.SelectedIndices[0]].Text;
+            int zoneId = int.Parse(selected.Split(' ')[0]);
+            //Console.WriteLine(zoneId);
+
+            if(Program.FirefallProcess != null && !Program.FirefallProcess.HasExited)
+            {
+                Program.FirefallProcess.Kill();
+                Program.FirefallProcess.WaitForExit(1000);
+            }
+
+            Nsr.GenerateDummyFile(zoneId).Write(_dummyReplayPath);
+            ProcessStartInfo info = new ProcessStartInfo
+            {
+                FileName = _patchedExePath,
+                WorkingDirectory = _workingDirectory,
+                Arguments = "--open=\"" + _dummyReplayPath + "\""
+            };
+
+            Program.FirefallProcess = Process.Start(info);
         }
 
         private void OpenFileDialog1_FileOk(object sender, CancelEventArgs e)
@@ -186,7 +184,6 @@ namespace Arcporter
         {
             panel1.Visible = dlvZones.Visible;
             dlvZones.Visible = !dlvZones.Visible;
-
         }
     }
 }
