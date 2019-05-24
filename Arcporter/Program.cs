@@ -1,37 +1,31 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Arcporter
 {
-    static class Program
+    public static class Program
     {
         public static Process FirefallProcess;
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
+
         [STAThread]
-        static void Main()
+        private static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.ApplicationExit += new EventHandler(Application_ApplicationExit);
-            Application.Run(new Form1());
-            
+            Application.ApplicationExit += Application_ApplicationExit;
+            Application.Run(new ArcporterForm());
         }
 
         private static void Application_ApplicationExit(object sender, EventArgs e)
         {
-            //Console.WriteLine("exit");
-            if (FirefallProcess != null && !FirefallProcess.HasExited)
+            if (FirefallProcess == null || FirefallProcess.HasExited)
             {
-                FirefallProcess.Kill();
-                FirefallProcess.WaitForExit(1000);
+                return;
             }
+
+            FirefallProcess.Kill();
+            FirefallProcess.WaitForExit(TimeSpan.FromSeconds(1).Milliseconds);
         }
     }
 }
