@@ -37,6 +37,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.dtbTitle = new DarkUI.Controls.DarkTextBox();
             this.dtbInfo = new DarkUI.Controls.DarkTextBox();
+            this.timePicker1 = new Arcporter.Controls.TimePicker();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -74,7 +75,7 @@
             this.dlvZones.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dlvZones.Location = new System.Drawing.Point(0, 0);
             this.dlvZones.Name = "dlvZones";
-            this.dlvZones.Size = new System.Drawing.Size(284, 340);
+            this.dlvZones.Size = new System.Drawing.Size(284, 324);
             this.dlvZones.TabIndex = 0;
             this.dlvZones.Text = "darkListView1";
             this.dlvZones.Visible = false;
@@ -109,7 +110,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(10);
-            this.panel1.Size = new System.Drawing.Size(286, 340);
+            this.panel1.Size = new System.Drawing.Size(286, 341);
             this.panel1.TabIndex = 4;
             // 
             // dtbTitle
@@ -137,7 +138,7 @@
             this.dtbInfo.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.dtbInfo.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtbInfo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
-            this.dtbInfo.Location = new System.Drawing.Point(10, 31);
+            this.dtbInfo.Location = new System.Drawing.Point(10, 32);
             this.dtbInfo.Multiline = true;
             this.dtbInfo.Name = "dtbInfo";
             this.dtbInfo.Size = new System.Drawing.Size(266, 299);
@@ -145,12 +146,24 @@
             this.dtbInfo.Text = resources.GetString("dtbInfo.Text");
             this.dtbInfo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // timePicker1
+            // 
+            this.timePicker1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.timePicker1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(52)))), ((int)(((byte)(54)))));
+            this.timePicker1.Location = new System.Drawing.Point(0, 325);
+            this.timePicker1.Name = "timePicker1";
+            this.timePicker1.Size = new System.Drawing.Size(286, 16);
+            this.timePicker1.TabIndex = 5;
+            this.timePicker1.Value = 0D;
+            // 
             // ArcporterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(284, 361);
+            this.Controls.Add(this.timePicker1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnInfo);
             this.Controls.Add(this.btnBrowse);
@@ -177,6 +190,7 @@
         private System.Windows.Forms.Panel panel1;
         private DarkUI.Controls.DarkTextBox dtbInfo;
         private DarkUI.Controls.DarkTextBox dtbTitle;
+        private Controls.TimePicker timePicker1;
     }
 }
 
