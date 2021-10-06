@@ -2,20 +2,13 @@
 using FauFau.Formats;
 using FauFau.Hax;
 using FauFau.Hax.Patches;
-using FauFau.Util;
-using SharpCompress.Compressors;
-using SharpCompress.Compressors.Deflate;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
@@ -41,7 +34,7 @@ namespace Arcporter
 
         public ArcporterForm()
         {
-            _appDataPath = Common.AppDataPath("Arcporter");
+            _appDataPath = Path.Combine(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "TheMeldingWars"), "Arcporter");
             _dummyReplayPath = Path.Combine(_appDataPath, "dummy.nsr");
             _patchedExePath = Path.Combine(_appDataPath, "PatchedClient.exe");
 

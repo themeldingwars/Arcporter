@@ -29,15 +29,15 @@
         private void InitializeComponent()
         {
             this.pnlTrack = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pnlThumb = new System.Windows.Forms.Panel();
             this.lblTime = new DarkUI.Controls.DarkLabel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.darkLabel1 = new DarkUI.Controls.DarkLabel();
             this.pnlTrack.SuspendLayout();
+            this.pnlThumb.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            this.pnlThumb.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlTrack
@@ -50,6 +50,29 @@
             this.pnlTrack.Name = "pnlTrack";
             this.pnlTrack.Size = new System.Drawing.Size(141, 18);
             this.pnlTrack.TabIndex = 1;
+            // 
+            // pnlThumb
+            // 
+            this.pnlThumb.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(92)))), ((int)(((byte)(92)))));
+            this.pnlThumb.Controls.Add(this.lblTime);
+            this.pnlThumb.Location = new System.Drawing.Point(0, 1);
+            this.pnlThumb.Name = "pnlThumb";
+            this.pnlThumb.Size = new System.Drawing.Size(52, 14);
+            this.pnlThumb.TabIndex = 0;
+            // 
+            // lblTime
+            // 
+            this.lblTime.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblTime.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.lblTime.Location = new System.Drawing.Point(-4, -1);
+            this.lblTime.Name = "lblTime";
+            this.lblTime.Size = new System.Drawing.Size(60, 14);
+            this.lblTime.TabIndex = 0;
+            this.lblTime.Text = "10:00 AM";
+            this.lblTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblTime.MouseDown += new System.Windows.Forms.MouseEventHandler(this.OnMouseDown);
+            this.lblTime.MouseMove += new System.Windows.Forms.MouseEventHandler(this.OnMouseMove);
+            this.lblTime.MouseUp += new System.Windows.Forms.MouseEventHandler(this.OnMouseUp);
             // 
             // pictureBox1
             // 
@@ -73,34 +96,11 @@
             this.pictureBox2.TabIndex = 4;
             this.pictureBox2.TabStop = false;
             // 
-            // pnlThumb
-            // 
-            this.pnlThumb.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(92)))), ((int)(((byte)(92)))));
-            this.pnlThumb.Controls.Add(this.lblTime);
-            this.pnlThumb.Location = new System.Drawing.Point(0, 1);
-            this.pnlThumb.Name = "pnlThumb";
-            this.pnlThumb.Size = new System.Drawing.Size(52, 14);
-            this.pnlThumb.TabIndex = 0;
-            // 
-            // lblTime
-            // 
-            this.lblTime.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTime.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.lblTime.Location = new System.Drawing.Point(-4, -1);
-            this.lblTime.Name = "lblTime";
-            this.lblTime.Size = new System.Drawing.Size(60, 14);
-            this.lblTime.TabIndex = 0;
-            this.lblTime.Text = "10:00 AM";
-            this.lblTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblTime.MouseDown += new System.Windows.Forms.MouseEventHandler(this.OnMouseDown);
-            this.lblTime.MouseMove += new System.Windows.Forms.MouseEventHandler(this.OnMouseMove);
-            this.lblTime.MouseUp += new System.Windows.Forms.MouseEventHandler(this.OnMouseUp);
-            // 
             // darkLabel1
             // 
             this.darkLabel1.AutoSize = true;
             this.darkLabel1.BackColor = System.Drawing.Color.Transparent;
-            this.darkLabel1.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.darkLabel1.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.darkLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.darkLabel1.Location = new System.Drawing.Point(1, 2);
             this.darkLabel1.Name = "darkLabel1";
@@ -117,13 +117,14 @@
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.pnlTrack);
+            this.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Name = "TimePicker";
             this.Size = new System.Drawing.Size(200, 18);
             this.Resize += new System.EventHandler(this.OnResize);
             this.pnlTrack.ResumeLayout(false);
+            this.pnlThumb.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            this.pnlThumb.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 

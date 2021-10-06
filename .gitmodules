@@ -4,3 +4,6 @@
 [submodule "Arcporter/Lib/DarkUI"]
 	path = Arcporter/Lib/DarkUI
 	url = https://github.com/RobinPerris/DarkUI.git
+[submodule "Arcporter/Lib/DarkUI.Net5"]
+	path = Arcporter/Lib/DarkUI.Net5
+	url = https://github.com/colhountech/DarkUI.Net5.git
