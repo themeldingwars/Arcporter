@@ -1,4 +1,3 @@
-
 # Arcporter
 
 *This tool was created for educational purposes only and should not be used by anyone.*
@@ -11,7 +10,7 @@ Arcporter is still in early development and is only confirmed working with the l
 
 ## How to Install
 
-1. Grab the [latest release](https://github.com/themeldingwars/Arcporter/releases) from GitHub
+1. Grab the [latest release](https://github.com/themeldingwars/Arcporter/releases/latest) from GitHub
 2. Don't start Firefall manually
 3. Launch Arcporter
 4. Pick the FirefallClient.exe
@@ -33,3 +32,5 @@ git clone https://github.com/themeldingwars/Arcporter.git
 cd Arcporter
 git submodule update --init --recursive
 ```
+
+For the single-file build, run `dotnet publish -c Release`.
