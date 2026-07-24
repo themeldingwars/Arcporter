@@ -73,6 +73,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="SharpCompress" Version="0.48.0" />
     <Content Include="Crystite_Engine.ico" />
     <None Include="Resources\right.png" />
     <None Include="Resources\left.png" />
