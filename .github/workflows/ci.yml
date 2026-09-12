@@ -1,0 +1,61 @@
+name: Build, Test & Publish
+
+on:
+  push:
+  pull_request:
+    branches: [ master ]
+  workflow_dispatch:
+
+defaults:
+  run:
+    shell: bash
+
+env:
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+  DOTNET_NOLOGO: true
+  DOTNET_CLI_TELEMETRY_OPTOUT: true
+
+jobs:
+  build:
+    name: ${{ matrix.platform.name }} ${{ matrix.dotnet.name }}
+    runs-on: ${{ matrix.platform.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        platform:
+          - { name: Windows, os: windows-2025-vs2026 }
+        dotnet:
+          - { name: .NET 5, version: '5.0.x' }
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+          submodules: recursive
+
+      - name: Setup .NET SDK
+        id: setup-dotnet
+        uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: ${{ matrix.dotnet.version }}
+      - name: Enforce SDK version
+        env:
+          DOTNET_VERSION: ${{ steps.setup-dotnet.outputs.dotnet-version }}
+        run: dotnet new globaljson --sdk-version "$DOTNET_VERSION" --force
+      - name: Verify SDK installation
+        run: dotnet --info
+
+      - name: Restore
+        run: dotnet restore
+      - name: Build
+        run: dotnet build --no-restore --configuration Release
+
+      - name: Publish
+        run: dotnet publish Arcporter/Arcporter.csproj --no-build --configuration Release --output Publish
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: Arcporter-${{ github.sha }}
+          path: Publish
