@@ -1,0 +1,13 @@
+<Project>
+
+    <PropertyGroup Condition="'$(MSBuildProjectName)' == 'Arcporter'">
+        <Company>The Melding Wars</Company>
+        <Product>Arcporter</Product>
+        <Authors>The Melding Wars</Authors>
+        <Copyright>Copyright © 2019-2026 The Melding Wars</Copyright>
+        <NeutralLanguage>en-US</NeutralLanguage>
+        <RepositoryUrl>https://github.com/themeldingwars/Arcporter</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+    </PropertyGroup>
+
+</Project>

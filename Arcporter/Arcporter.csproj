@@ -3,10 +3,7 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net5.0-windows</TargetFramework>
-    <RepositoryUrl>https://github.com/themeldingwars/Arcporter</RepositoryUrl>
     <AssemblyTitle>Arcporter</AssemblyTitle>
-    <Product>Arcporter</Product>
-    <Copyright>Copyright © 2019-2021</Copyright>
     <OutputPath>bin\$(Configuration)\</OutputPath>
     <ApplicationIcon>Crystite_Engine.ico</ApplicationIcon>
   </PropertyGroup>
