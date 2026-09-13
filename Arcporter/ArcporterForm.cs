@@ -145,13 +145,10 @@ namespace Arcporter
                 Program.FirefallProcess.WaitForExit(1000);
             }
 
-            BinaryUtil.DoubleByteMap dMap = new BinaryUtil.DoubleByteMap();
             Nsr dummy = Nsr.GenerateDummyFile(zoneId);
 
             // temporary solution for changing time as this
             // has been postponed too long due to other changes
-
-            dMap.Double = timePicker1.Value;
 
             byte[] dBytes = BitConverter.GetBytes(timePicker1.Value);
             dummy.Meta.Unk3[18] = dBytes[0];

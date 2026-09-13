@@ -65,8 +65,10 @@
 
   <ItemGroup>
     <ProjectReference Include="Lib\DarkUI.Net5\DarkUI\DarkUI.csproj" />
-    <ProjectReference Include="Lib\FauFau\FauFau\FauFau.csproj" />
-    <ProjectReference Include="Lib\FauFau\FauFau\Lib\Bitter\Bitter\Bitter.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FauFau" Version="1.5.4" />
   </ItemGroup>
 
   <ItemGroup>
