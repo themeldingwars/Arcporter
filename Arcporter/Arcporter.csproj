@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net5.0-windows</TargetFramework>
+    <TargetFramework>net8.0-windows</TargetFramework>
     <AssemblyTitle>Arcporter</AssemblyTitle>
     <OutputPath>bin\$(Configuration)\</OutputPath>
     <ApplicationIcon>Crystite_Engine.ico</ApplicationIcon>
