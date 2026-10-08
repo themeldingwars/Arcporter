@@ -16,7 +16,7 @@ namespace Arcporter.Controls
             get { return _value; }
             set
             {
-                _value = FauFau.Util.Math.Clamp(value, 1d, 0d);
+                _value = Math.Clamp(value, 0d, 1d);
                 int max = pnlTrack.Width - pnlThumb.Width;
                 pnlThumb.Left = (int)Map(0, 1440, 0, max, _value * 1440);
                 lblTime.Text = dt.AddMinutes(_value * 1440).ToShortTimeString();
@@ -50,7 +50,7 @@ namespace Arcporter.Controls
             {
                 int max = pnlTrack.Width - pnlThumb.Width;
                 int x = pnlThumb.Left + (e.X - mousePos.X);
-                x = FauFau.Util.Math.Clamp(x, max, 0);
+                x = Math.Max(Math.Min(x, max), 0);
                 Value = Map(0, max, 0d, 1d, x);
             }
         }
