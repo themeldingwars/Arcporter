@@ -145,20 +145,7 @@ namespace Arcporter
                 Program.FirefallProcess.WaitForExit(1000);
             }
 
-            Nsr dummy = Nsr.GenerateDummyFile(zoneId);
-
-            // temporary solution for changing time as this
-            // has been postponed too long due to other changes
-
-            byte[] dBytes = BitConverter.GetBytes(timePicker1.Value);
-            dummy.Meta.Unk3[18] = dBytes[0];
-            dummy.Meta.Unk3[19] = dBytes[1];
-            dummy.Meta.Unk3[20] = dBytes[2];
-            dummy.Meta.Unk3[21] = dBytes[3];
-            dummy.Meta.Unk3[22] = dBytes[4];
-            dummy.Meta.Unk3[23] = dBytes[5];
-            dummy.Meta.Unk3[24] = dBytes[6];
-            dummy.Meta.Unk3[25] = dBytes[7];
+            Nsr dummy = Nsr.GenerateDummyFile(zoneId, timePicker1.Value);
 
             Console.WriteLine(timePicker1.Value);
 
